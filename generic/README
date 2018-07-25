@@ -1,21 +1,5 @@
 OpenVPN project cross-compile buildsystem
 
-About
-
-	This environment provides an easy way to build
-	OpenVPN Project components using a cross compiler.
-
-    More thorough documentation is available in the OpenVPN
-    wiki:
-
-    <https://community.openvpn.net/openvpn>
-
-Versions
-
-	The tarballs are taken from "SOURCEROOT" directory, the
-	version is not forced. If tarball is missing it is
-	downloaded from its site using a specific version.
-
 Cross compile
 
 	$ CHOST=i686-pc-mingw32 CBUILD=i686-pc-linux-gnu ./build
@@ -45,11 +29,11 @@ Cross compile
 				unzip
 				wget
 
-			$ IMAGEROOT=`pwd`/image-win32 \
+	$ IMAGEROOT=`pwd`/image-win32 \
 				CHOST=i686-w64-mingw32 \
 				CBUILD=i686-pc-cygwin \
 				./build
-			$ IMAGEROOT=`pwd`/image-win64 \
+	$ IMAGEROOT=`pwd`/image-win64 \
 				CHOST=x86_64-w64-mingw32 \
 				CBUILD=i686-pc-cygwin \
 				./build
