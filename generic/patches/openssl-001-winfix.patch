@@ -1,0 +1,17 @@
+diff -Naur a/include/openssl/ocsp.h b/include/openssl/ocsp.h
+--- a/include/openssl/ocsp.h	2018-06-20 20:48:13.000000000 +0600
++++ b/include/openssl/ocsp.h	2018-07-25 23:57:43.950873921 +0600
+@@ -351,3 +351,13 @@
+ #  endif
+ # endif
+ #endif
++
++#if defined(OPENSSL_SYS_WINDOWS)
++#include <windows.h>
++#undef X509_NAME
++#undef X509_EXTENSIONS
++#undef X509_CERT_PAIR
++#undef PKCS7_ISSUER_AND_SERIAL
++#undef OSCP_REQUEST
++#undef OSCP_RESPONSE
++#endif
