@@ -194,8 +194,9 @@ build_dep() {
 			$(empty_ifelse "${DO_STATIC}" shared no-dso) \
 			$(CHOST="${VIRTUAL_CHOST}" "${SCRIPTROOT}/gentoo.config-0.9.8") \
 			${CFLAGS} ${LDFLAGS} \
-			no-capieng \
-			no-asm \
+			-DOPENSSL_NO_CAPIENG \
+			mingw \
+			threads \
 			--openssldir=/etc/ssl \
 			--libdir=/lib \
 			${EXTRA_OPENSSL_CONFIG} \
