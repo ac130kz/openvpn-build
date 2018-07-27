@@ -327,10 +327,23 @@ solaris_common() {
 	OPENSSL_SKIP_DEPEND=1 # sun compiler
 }
 
+install_ubuntu_dependencies() {
+	if [  -n "$(uname -a | grep Ubuntu)" ]; then
+		if [[ "$EUID" -ne 0 ]]; then
+			echo "ERROR: you need to run this as root to install Ubuntu dependencies"
+			exit 1
+		fi
+    		sudo apt update && sudo apt upgrade -y && sudo apt install dos2unix nsis man2html dpkg gcc-mingw-w64 -y
+	else
+    		echo "WARNING!: Ubuntu not detected install dependencies on your own!"
+	fi  
+}
+
 main() {
 	export CFLAGS="${TARGET_CFLAGS} ${EXTRA_TARGET_CFLAGS}"
 	export LDFLAGS="${TARGET_LDFLAGS} ${EXTRA_TARGET_LDFLAGS}"
 	create_layout
+	install_ubuntu_dependencies
 	download
 	extract
 	build_dep
