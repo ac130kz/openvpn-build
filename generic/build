@@ -329,10 +329,11 @@ solaris_common() {
 
 install_ubuntu_dependencies() {
 	if [  -n "$(lsb_release -a | grep Ubuntu)" ]; then
-		if [[ "$EUID" -ne 0 ]]; then
+		if [ "$EUID" -ne 0 ]; then
 			echo "ERROR: you need to run this as root to install Ubuntu dependencies"
 			exit 1
 		fi
+		echo "INFO: Detected Ubuntu, installing dependencies"
 		sudo apt update && sudo apt upgrade -y && sudo apt install dos2unix nsis man2html dpkg gcc-mingw-w64 -y
 	else
 		echo "WARNING!: Ubuntu not detected install dependencies on your own!"
@@ -340,10 +341,10 @@ install_ubuntu_dependencies() {
 }
 
 main() {
+	install_ubuntu_dependencies
 	export CFLAGS="${TARGET_CFLAGS} ${EXTRA_TARGET_CFLAGS}"
 	export LDFLAGS="${TARGET_LDFLAGS} ${EXTRA_TARGET_LDFLAGS}"
 	create_layout
-	install_ubuntu_dependencies
 	download
 	extract
 	build_dep
