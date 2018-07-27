@@ -330,7 +330,7 @@ solaris_common() {
 install_ubuntu_dependencies() {
 	if [ -n "$(lsb_release -a | grep Ubuntu)" ]; then
 		echo "INFO: Detected Ubuntu, installing dependencies"
-		if [ "$EUID" -ne 0 ]; then
+		if[ $(id -u) -ne 0 ]; then
 			sudo apt update && sudo apt upgrade -y && sudo apt install dos2unix nsis man2html dpkg gcc-mingw-w64 -y	
 		else
 			echo "ERROR: you need to run this as root to install Ubuntu dependencies"
