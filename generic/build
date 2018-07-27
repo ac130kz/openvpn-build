@@ -195,7 +195,6 @@ build_dep() {
 			$(CHOST="${VIRTUAL_CHOST}" "${SCRIPTROOT}/gentoo.config-0.9.8") \
 			${CFLAGS} ${LDFLAGS} \
 			-DOPENSSL_NO_CAPIENG \
-			mingw \
 			threads \
 			--openssldir=/etc/ssl \
 			--libdir=/lib \
