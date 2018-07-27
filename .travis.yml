@@ -17,19 +17,10 @@ env:
 matrix:
   fast_finish: true
   include:
-    - compiler: ": Win32"
-      env: CHOST=i686-w64-mingw32
     - compiler: ": Win64"
       env: CHOST=x86_64-w64-mingw32
-    - compiler: ": Win32 + static"
-      env: DO_REALLY_STATIC=1 CHOST=i686-w64-mingw32
     - compiler: ": Win64 + static"
       env: DO_REALLY_STATIC=1 CHOST=x86_64-w64-mingw32
-    - compiler: ": Win32 + depcache"
-      env: CHOST=i686-w64-mingw32
-      script:
-        - generic/build --save-depcache=travis
-        - generic/build --use-depcache=travis
     - compiler: ": Win64 + depcache"
       env: CHOST=x86_64-w64-mingw32
       script:
@@ -44,8 +35,8 @@ matrix:
 
 install:
     - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu xenial main universe"
-    - sudo apt-get update
-    - sudo apt-get -y install wget dpkg gcc-mingw-w64
+    - sudo apt update
+    - sudo apt -y install dpkg gcc-mingw-w64
 
 before_script:
     - unset CC; unset CXX
